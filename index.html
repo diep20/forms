@@ -1,1 +1,118 @@
+<!DOCTYPE HTML>
+<html lang="en">
 
+<head>
+    <h2>Log-in with Storage</h2>
+  <meta charset="UTF-8">
+  <title>Form Example 1</title>
+  <link rel="stylesheet" type="text/css" href="stylesheet.css" />
+  <style>
+    fieldset {
+      background-color: rgb(255, 246, 205);
+      border: 1px solid rgb(233, 69, 0);
+      /*float:left; */
+      margin: 10px 0px 100px 2.5%;
+      width: 46%;
+
+    }
+
+    legend {
+      background-color: rgb(233, 69, 0);
+      color: white;
+      padding: 3px 0px;
+      text-indent: 5px;
+      width: 100%;
+    }
+
+    label {
+      clear: left;
+      display: block;
+      float: left;
+      font-size: 0.9em;
+      margin: 7px 4% 7px 5px;
+      width: 40%;
+    }
+
+    input {
+      display: block;
+      float: left;
+      font-size: 0.9em;
+      margin: 7px 0px;
+      width: 50%;
+    }
+
+    #state {
+      width: 50px;
+    }
+
+    select {
+      display: block;
+      float: left;
+      font-size: 0.9em;
+      margin: 7px 0px;
+
+    }
+
+    #correct {
+      font-size: 0.9em;
+      background-color: rgba(233, 70, 0, 0.65);
+      width: 48%;
+
+    }
+
+  
+    
+</style>
+</head>
+<body style="background-color: lightcoral;">
+
+</body>
+<body>
+   <div><h3>Diep </h3></div>
+    <form onsubmit="return false">
+        
+        <fieldset id="section1">
+            <button onclick="newUser()">Click for New User</button>
+            <button onclick="existingUser()">Click for Existing User</button>
+        </fieldset>
+        <fieldset id="section2" disabled>
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <input type="text" id="city" placeholder="City">
+            <input type="text" id="state" placeholder="State">
+            <button onclick="login()">Login</button>
+        </fieldset>
+        <fieldset id="section3" disabled>
+            <input type="text" id="username2" placeholder="Username">
+            <input type="password" id="password2" placeholder="Password">
+            <button onclick="login2()">Login</button>
+        </fieldset>
+    </form>
+    <script>
+        function newUser() {
+            document.getElementById('section1').disabled = true;
+            document.getElementById('section2').disabled = false;
+        }
+        function existingUser() {
+            document.getElementById('section1').disabled = true;
+            document.getElementById('section3').disabled = false;
+        }
+        function login() {
+            var username = document.getElementById('username').value;
+            localStorage.setItem("username", username);
+            localStorage.setItem("password", document.getElementById('password').value);
+            localStorage.setItem("city", document.getElementById('city').value);
+            localStorage.setItem("state", document.getElementById('state').value);
+            alert("Welcome " + username);
+        }
+        function login2() {
+            var username = document.getElementById('username2').value;
+            var password = document.getElementById('password2').value;
+            if (username == localStorage.getItem("username") && password == localStorage.getItem("password")) {
+                alert("Welcome back " + username);
+            } else {
+                alert("Invalid");
+            }
+        }
+    </script>
+</body>
